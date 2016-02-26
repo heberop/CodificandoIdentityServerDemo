@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Secure";
+}
+
+<h2>Secure</h2>
+
+<div>
+    <a class="btn btn-primary" href="~/Home/Secure">Secure</a>
+    <a class="btn btn-primary" href="~/Home/Logout">Logout</a>
+    <a class="btn btn-primary" href="~/Home/Api">Call API</a>
+</div>
+   
+<hr />
+
+@if(ViewData["result"] != null)
+{
+    <pre>@ViewData["result"]</pre>
+}
+
+@if (Request.IsAuthenticated)
+{
+    <h3>Claims</h3>
+    <dl>
+        @foreach (var claim in ((System.Security.Claims.ClaimsPrincipal)User).Claims)
+        {
+            <dt>@claim.Type</dt>
+            <dd>@claim.Value</dd>
+        }
+    </dl>
+}
